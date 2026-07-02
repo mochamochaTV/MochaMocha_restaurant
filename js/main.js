@@ -1,3 +1,23 @@
+// DOM要素を取得
+const startBtn = document.getElementById('start-btn');
+const startScreen = document.getElementById('start-screen');
+const homeScreen = document.getElementById('home-screen');
+
+// ボタンクリック時のイベント
+startBtn.addEventListener('click', () => {
+    console.log("ボタンが押されました"); // 動作確認用
+    
+    // 1. スタート画面を隠す
+    startScreen.style.display = 'none';
+    
+    // 2. ホーム画面を表示する (cssでdisplay: none; になっているものを解除)
+    homeScreen.classList.remove('hidden');
+    homeScreen.style.display = 'block';
+    
+    // 3. 必要ならBGMを再生
+    // playBGM('home'); 
+});
+
 import {
     categoryBonusConfig, shopCategories, skillData, consumableData,
     trophyConfig, GACHA_COST, marmotData, gachaPool, wordList
@@ -344,3 +364,22 @@ backHomeLoungeBtn.addEventListener("click", () => {
 
 // ※タイピング用コアロジックや、ショップレンダー等の既存の全メソッドは省略せずそのまま下に結合されます。
 loadGameData();
+
+// main.js に追加
+document.addEventListener('DOMContentLoaded', () => {
+    const startBtn = document.getElementById('start-btn');
+    const startScreen = document.getElementById('start-screen');
+    const homeScreen = document.getElementById('home-screen');
+
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            // スタート画面を隠す
+            startScreen.style.display = 'none';
+            // ホーム画面を表示する
+            homeScreen.style.display = 'block';
+            
+            // bodyのクラスも必要なら変更（CSSの調整用）
+            document.body.classList.remove('on-title-screen');
+        });
+    }
+});
