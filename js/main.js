@@ -1,21 +1,23 @@
-// DOM要素を取得
-const startBtn = document.getElementById('start-btn');
-const startScreen = document.getElementById('start-screen');
-const homeScreen = document.getElementById('home-screen');
+// --- タイトル画面（のれんをくぐる）からホーム画面への遷移処理 ---
+document.addEventListener('DOMContentLoaded', () => {
+    const entryBtn = document.getElementById('entry-btn');
+    const titleScreen = document.getElementById('title-screen');
+    const mainHomeScreen = document.getElementById('start-screen'); // 元々のプログラムがホーム画面として扱っている要素
 
-// ボタンクリック時のイベント
-startBtn.addEventListener('click', () => {
-    console.log("ボタンが押されました"); // 動作確認用
-    
-    // 1. スタート画面を隠す
-    startScreen.style.display = 'none';
-    
-    // 2. ホーム画面を表示する (cssでdisplay: none; になっているものを解除)
-    homeScreen.classList.remove('hidden');
-    homeScreen.style.display = 'block';
-    
-    // 3. 必要ならBGMを再生
-    // playBGM('home'); 
+    if (entryBtn && titleScreen && mainHomeScreen) {
+        entryBtn.addEventListener('click', () => {
+            console.log("のれんをくぐりました！");
+            titleScreen.style.display = 'none'; // タイトル画面を非表示にする
+            mainHomeScreen.classList.remove('hidden'); // 本来のホーム画面を表示する
+            mainHomeScreen.style.display = 'block';
+            document.body.classList.remove('on-title-screen');
+            
+            // もちすけのセリフシステムを動かす
+            if (typeof startMarmotSpeech === 'function') {
+                startMarmotSpeech();
+            }
+        });
+    }
 });
 
 import {
