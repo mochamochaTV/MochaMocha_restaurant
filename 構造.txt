@@ -9,3 +9,8 @@
 │   ├── 📄 audio.js      ← 音声の読み込みと管理
 │   └── 📄 main.js       ← ゲームを動かすメインのプログラム
 └── 📄 index.html        ← これを開いてゲームを起動する
+
+画像更新
+git add .
+git commit -m "画像差し替え"
+この後にCommit&Push

@@ -1,183 +1,197 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1BMHTS038"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-R1BMHTS038');
-    </script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1BMHTS038"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-R1BMHTS038');
+   </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>もっちゃもっちゃ食堂</title>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="on-title-screen">
+
+   
     <div id="bg-layer"></div>
     <div id="fade-overlay"></div>
+    <div id="urgent-overlay"></div>
     <div id="combo-milestone-overlay"></div>
     <div id="combo-milestone-pop"></div>
-    <div id="urgent-overlay"></div>
-    <div id="gacha-flash-overlay"></div>
 
-    <h1>🍔 もっちゃもっちゃ食堂 🍰</h1>
-    <div class="subtitle">〜 1分間でたくさん食べて、売り上げを伸ばそう！ 〜</div>
+    <div class="container">
+        <h1>もっちゃもっちゃ食堂</h1>
+        <div class="subtitle">〜 もちすけと秘密のレシピタイピング 〜</div>
 
-    <input type="text" id="mobile-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" inputmode="url">
-
-    <div class="container" id="game-container">
+       
         <div id="title-screen">
-            <div class="vertical-btn-group">
-                <button id="enter-home-btn">🚪 入店する</button>
+            <div class="title-logo-space">
+                <span class="animated-emoji">🍱</span>
+                <span class="animated-emoji">🐼</span>
+                <span class="animated-emoji">🍔</span>
             </div>
+            <p style="margin-bottom:25px; font-weight:bold; color:#7e5835; line-height:1.6;">
+                タイピングでおいしい料理をたくさん作って、<br>
+                世界一の食堂を目指そうもっちゃ！
+            </p>
+            <button id="enter-home-btn" class="menu-btn main-btn" style="font-size:1.5rem; padding:15px 40px;">のれんをくぐる 🚪</button>
         </div>
 
+       
         <div id="start-screen" class="hidden">
-            <div class="total-sales-box">
-                🏪 現在の累計売上：<span id="total-sales-display">￥0</span>
-            </div>
-
-            <img id="home-character-img" src="assets/img/normal.png" alt="キャラクター" style="width: 120px; margin-bottom: 15px;"><br>
+            <div class="total-sales-box">現在の累計売上: <span id="total-sales-display">￥0</span></div>
             
-            <div class="vertical-btn-group">
-                <button id="start-btn">注文開始！</button>
-                <button id="to-shop-btn" style="background-color: #34495e; box-shadow: 0 5px 0 #2c3e50;">🔨 メニュー・設備開発</button>
-                <button id="to-trophy-btn" style="background-color: #27ae60; box-shadow: 0 5px 0 #219653;">🏆 トロフィールーム</button>
-                <button id="to-storage-btn" style="background-color: #a0522d; box-shadow: 0 5px 0 #7b3f1d;">📦 貯蔵庫</button>
-                <button id="to-lounge-btn" style="background-color: #ff9ff3; box-shadow: 0 5px 0 #e84393;">🛋️ 休憩室</button>
+            <div class="home-character-container">
+                <div id="home-balloon" class="home-balloon hidden">いらっしゃいませもっちゃ！</div>
+                <img id="home-character-img" src="" alt="もちすけ">
             </div>
 
+           
+            <div class="menu-grid">
+                <button class="menu-btn main-btn" id="start-btn">🍔 注文開始！ (タイピング)</button>
+                <button class="menu-btn sub-btn" id="to-shop-btn">🐼 開発＆購入ショップ</button>
+                <button class="menu-btn sub-btn" id="to-storage-btn">🧺 倉庫＆スキル装備</button>
+                <button class="menu-btn sub-btn" id="to-lounge-btn">🐹 もちすけの部屋</button>
+                <button class="menu-btn sub-btn" id="to-trophy-btn">🏆 実績・称号ルーム</button>
+            </div>
+
+           
             <div class="debug-box">
-                <span style="font-size:0.8rem; font-weight:bold; color:#e74c3c;">🛠️ 製作者限定デバッグツール</span><br>
-                <button id="debug-money-btn" style="font-size:1rem; padding:5px 15px; background-color:#e74c3c; box-shadow: 0 4px 0 #c0392b; margin-top:5px;">💰 資金＋￥1,000,000</button>
+                <span style="font-size:0.8rem; font-weight:bold; color:#c0392b;">🛠️ デバッグ開発ツール</span>
+                <button id="debug-money-btn" style="margin-left:10px; padding:2px 8px; font-size:0.75rem; cursor:pointer;">売上＋100万円</button>
             </div>
         </div>
 
+       
+        <div id="game-screen" class="hidden">
+            <div id="timer">残り時間: 60 秒</div>
+            <div id="penalty-pop"></div>
+            <div id="combo-container"></div>
+            <div id="game-container">
+                <div id="word-ja"></div>
+                <div id="word-romaji"></div>
+                <input type="text" id="mobile-input" autocomplete="off" autofocus>
+            </div>
+            <div style="margin-top:20px; position:relative; display:inline-block;">
+                <img id="character-img" src="" alt="ゲーム中もちすけ">
+            </div>
+        </div>
+
+       
+        <div id="result-screen" class="hidden">
+            <div id="receipt-box">
+                <div class="receipt-title">☆☆☆ もっちゃもっちゃ食堂 領収書 ☆☆☆</div>
+                <div class="receipt-dash">---------------------------------------</div>
+                <div id="receipt-list"></div>
+                <div class="receipt-dash">---------------------------------------</div>
+                <div class="receipt-total" id="receipt-grand-total"></div>
+                <div class="receipt-dash">---------------------------------------</div>
+                <div class="receipt-rank" id="receipt-rank-display"></div>
+                <div class="receipt-footer">ご来店ありがとうございました！またもっちゃ！</div>
+            </div>
+            <div style="margin:20px auto; text-align:center;">
+                <img id="result-character-img" src="" alt="結果もちすけ" style="width:110px;">
+            </div>
+            <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px; flex-wrap:wrap;">
+                <button class="receipt-action-btn" id="save-receipt-btn">📸 レシートを画像保存</button>
+                <button class="receipt-action-btn" id="share-receipt-btn">🚀 結果をシェア</button>
+            </div>
+            <div class="menu-grid" style="margin-top:10px;">
+                <button class="menu-btn main-btn" id="retry-btn">🔄 もう一回挑戦する！</button>
+                <button class="menu-btn sub-btn" id="home-btn">🚪 食堂のホームに戻る</button>
+            </div>
+        </div>
+
+       
         <div id="shop-screen" class="hidden">
-            <h2>🔨 開発＆購入ショップ</h2>
-            <div class="total-sales-box">
-                💰 手持ちの資金：<span id="shop-sales-display">￥0</span>
+            <div class="screen-title-area">
+                <h2>🐼 メニュー開発＆購入ショップ 🐼</h2>
+                <div class="total-sales-box" style="margin-bottom:0;">手持ち資金: <span id="shop-sales-display">￥0</span></div>
             </div>
-
             <div class="shop-tabs">
-                <button class="shop-tab-btn active" id="tab-menu-btn">🍳 新メニュー</button>
-                <button class="shop-tab-btn" id="tab-skill-btn">🌟 永続スキル</button>
-                <button class="shop-tab-btn" id="tab-item-btn">🎒 消費アイテム</button>
+                <button id="tab-menu-btn" class="shop-tab active">🍔 料理開発</button>
+                <button id="tab-skill-btn" class="shop-tab">⚡ スキル強化</button>
+                <button id="tab-item-btn" class="shop-tab">🥤 アイテム購入</button>
             </div>
-
-            <div class="shop-list" id="shop-list-container"></div>
-            <button id="back-home-btn" style="background-color: #95a5a6; box-shadow: 0 5px 0 #7f8c8d;">戻る</button>
+            <div id="shop-list-container"></div>
+            <button class="menu-btn sub-btn back-btn" id="back-home-btn">↩ 戻る</button>
         </div>
 
+       
         <div id="trophy-screen" class="hidden">
-            <h2>🏆 もっちゃの特設トロフィールーム</h2>
-            
-            <div class="trophy-slider-wrapper">
-                <button class="trophy-nav-btn prev" id="trophy-prev-btn" onclick="slideTrophy(-1)">‹</button>
-                <div class="trophy-slider-viewport">
-                    <div class="trophy-slider-track" id="trophy-slider-track">
-                        <div class="trophy-room-container" id="trophy-room-box">
-                            <div id="trophy-0" class="trophy-spot" onclick="alertTrophy(0)"></div>
-                            <div id="trophy-1" class="trophy-spot" onclick="alertTrophy(1)"></div>
-                            <div id="trophy-2" class="trophy-spot" onclick="alertTrophy(2)"></div>
-                            <div id="trophy-3" class="trophy-spot" onclick="alertTrophy(3)"></div>
-                            <div id="trophy-4" class="trophy-spot" onclick="alertTrophy(4)"></div>
-                            <div id="trophy-5" class="trophy-spot" onclick="alertTrophy(5)"></div>
+            <h2>🏆 実績・称号展示ルーム 🏆</h2>
+            <p style="font-size:0.85rem; color:#666; margin-bottom:15px;">特定の条件を達成すると、豪華なトロフィーと永続ボーナスが解禁されるもっちゃ！</p>
+            <div class="trophy-slider-container">
+                <div class="trophy-slider-track" id="trophy-slider-track">
+                    <div class="trophy-page" id="trophy-page-0">
+                        <div class="trophy-grid">
+                            <div class="trophy-spot" id="trophy-0" onclick="clickTrophy(0)">❓</div>
+                            <div class="trophy-spot" id="trophy-1" onclick="clickTrophy(1)">❓</div>
+                            <div class="trophy-spot" id="trophy-2" onclick="clickTrophy(2)">❓</div>
+                            <div class="trophy-spot" id="trophy-3" onclick="clickTrophy(3)">❓</div>
+                            <div class="trophy-spot" id="trophy-4" onclick="clickTrophy(4)">❓</div>
+                            <div class="trophy-spot" id="trophy-5" onclick="clickTrophy(5)">❓</div>
                         </div>
-                        <div class="trophy-room-container" id="trophy-room-box-2">
-                            <div id="trophy-6" class="trophy-spot" onclick="alertTrophy(6)"></div>
-                            <div id="trophy-7" class="trophy-spot" onclick="alertTrophy(7)"></div>
-                            <div id="trophy-8" class="trophy-spot" onclick="alertTrophy(8)"></div>
-                            <div id="trophy-9" class="trophy-spot" onclick="alertTrophy(9)"></div>
-                            <div id="trophy-10" class="trophy-spot" onclick="alertTrophy(10)"></div>
-                            <div id="trophy-11" class="trophy-spot" onclick="alertTrophy(11)"></div>
+                    </div>
+                    <div class="trophy-page" id="trophy-page-1">
+                        <div class="trophy-grid">
+                            <div class="trophy-spot" id="trophy-6" onclick="clickTrophy(6)">❓</div>
+                            <div class="trophy-spot" id="trophy-7" onclick="clickTrophy(7)">❓</div>
+                            <div class="trophy-spot" id="trophy-8" onclick="clickTrophy(8)">❓</div>
+                            <div class="trophy-spot" id="trophy-9" onclick="clickTrophy(9)">❓</div>
+                            <div class="trophy-spot" id="trophy-10" onclick="clickTrophy(10)">❓</div>
+                            <div class="trophy-spot" id="trophy-11" onclick="clickTrophy(11)">❓</div>
                         </div>
                     </div>
                 </div>
-                <button class="trophy-nav-btn next" id="trophy-next-btn" onclick="slideTrophy(1)">›</button>
-                <div class="trophy-dots">
-                    <div class="trophy-dot active" id="trophy-dot-0" onclick="goToTrophyPage(0)"></div>
-                    <div class="trophy-dot" id="trophy-dot-1" onclick="goToTrophyPage(1)"></div>
-                </div>
             </div>
-
-            <button id="back-home-trophy-btn" style="background-color: #95a5a6; box-shadow: 0 5px 0 #7f8c8d;">戻る</button>
+            <div class="trophy-dots" id="trophy-dots-container"></div>
+            <button class="menu-btn sub-btn back-btn" id="back-home-trophy-btn">↩ 戻る</button>
         </div>
 
+       
         <div id="storage-screen" class="hidden">
-            <h2>📦 食材・アイテム・スキル貯蔵庫</h2>
-            
-            <div style="max-height: 380px; overflow-y: auto; padding-right: 5px; margin-bottom: 20px;">
-                <div class="storage-section-title">🎒 次回持ち込み消費アイテム（使い切り）</div>
-                <div class="shop-list" id="storage-item-list-container" style="max-height:none; margin-bottom:0;"></div>
-
-                <div class="storage-section-title">🌟 スキルカスタム設定（ON/OFF・レベル調整）</div>
-                <div class="shop-list" id="storage-skill-list-container" style="max-height:none; margin-bottom:0;"></div>
-
-                <div class="storage-section-title">🍱 開店メニュー設定（ジャンルON/OFF）</div>
-                <div class="shop-list" id="storage-menu-list-container" style="max-height:none; margin-bottom:0;"></div>
+            <h2>🧺 調理倉庫 ＆ スキル個別装備 🧺</h2>
+            <p style="font-size:0.85rem; color:#666; margin-bottom:15px;">開発した料理の提供スイッチ切り替えや、購入したスキルの装備レベルを細かく調整できるもっちゃ！</p>
+            <div class="storage-section">
+                <div class="storage-title">🍳 提供メニュー管理（チェックを外すとタイピングに出現しません）</div>
+                <div class="storage-list" id="storage-menu-list-container"></div>
             </div>
-
-            <button id="back-home-storage-btn" style="background-color: #95a5a6; box-shadow: 0 5px 0 #7f8c8d;">戻る</button>
+            <div class="storage-section">
+                <div class="storage-title">🥤 消耗アイテム自動使用設定（ONにすると毎ゲーム開始時に自動で1個消費されます）</div>
+                <div class="storage-list" id="storage-item-list-container"></div>
+            </div>
+            <div class="storage-section">
+                <div class="storage-title">⚡ 装備スキルレベル調整（現在のレベル以下にパワーを抑えることができます）</div>
+                <div class="storage-list" id="storage-skill-list-container"></div>
+            </div>
+            <button class="menu-btn sub-btn back-btn" id="back-home-storage-btn">↩ 戻る</button>
         </div>
 
+       
         <div id="lounge-screen" class="hidden">
-            <h2>🛋️ もっちゃ休憩室</h2>
-            <div class="total-sales-box">
-                💰 手持ちの資金：<span id="lounge-sales-display">￥0</span>
+            <div class="screen-title-area">
+                <h2>🐹 もちすけの部屋 ＆ 高級衣装ガチャ 🐹</h2>
+                <div class="total-sales-box" style="margin-bottom:0;">手持ち資金: <span id="lounge-sales-display">￥0</span></div>
             </div>
-
-            <img id="lounge-character-img" src="assets/img/normal.png" alt="キャラクター" style="width: 130px; margin-bottom: 5px;">
-            <div id="lounge-character-name" style="font-weight: bold; margin-bottom: 15px; color: #4a3728;"></div>
-
-            <div class="gacha-box">
-                <div class="gacha-cost">🎁 マーモットガチャ（1回 ￥<span id="gacha-cost-display"></span>）</div>
-                <button id="gacha-btn">ガチャを引く！</button>
-                <div id="gacha-drum-overlay">
-                    <div id="gacha-drum-icon">🎴</div>
-                    <div id="gacha-drum-label">ドキドキ…</div>
-                </div>
-                <div class="gacha-result-box" id="gacha-result-box"></div>
+            <div class="gacha-banner">
+                <div style="font-size:1.2rem; font-weight:bold; margin-bottom:5px;">✨ 特設マスコット衣装ガチャ ✨</div>
+                <div style="font-size:0.85rem; color:#7f8c8d; margin-bottom:10px;">1回：￥<span id="gacha-cost-display">50,000</span></div>
+                <button class="shop-btn" id="gacha-btn" style="padding:10px 25px; font-size:1.1rem;">ガチャを回す 🎰</button>
+                <div id="gacha-result-box" class="gacha-result"></div>
             </div>
-
-            <div class="storage-section-title">🐹 マーモットコレクション（タップで着せ替え）</div>
+            <div style="font-weight:bold; color:#4a3728; text-align:left; margin-bottom:10px; font-size:1rem; border-left:4px solid #e67e22; padding-left:8px;">👗 クローゼット（クリックで衣装チェンジ）</div>
             <div class="marmot-grid" id="marmot-grid-container"></div>
-
-            <button id="back-home-lounge-btn" style="background-color: #95a5a6; box-shadow: 0 5px 0 #7f8c8d;">戻る</button>
+            <button class="menu-btn sub-btn back-btn" id="back-home-lounge-btn">↩ 戻る</button>
         </div>
 
-        <div id="game-screen" class="hidden">
-            <div id="timer-container" style="position: relative; width: max-content; margin: 0 auto 5px auto;">
-                <div id="timer">残り時間: 60 秒</div>
-                <div id="penalty-pop">-1秒</div>
-            </div>
-            <div id="combo-container"></div>
-            <img id="character-img" src="assets/img/normal.png" alt="キャラクター">
-            <div id="word-ja">単語（日本語）</div>
-            <div id="word-romaji">
-                <span class="typed"></span><span class="untyped">romaji</span>
-            </div>
-        </div>
-
-        <div id="result-screen" class="hidden">
-            <h2>🎉 注文終了！ 🎉</h2>
-            <img id="result-character-img" src="assets/img/image_1.png" alt="キャラクター" style="width: 120px; margin-bottom: 10px;">
-            <div id="result"></div>
-            <div style="margin: 15px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-                <button id="save-receipt-btn" class="sub-btn" style="background-color: #34495e; box-shadow: 0 4px 0 #2c3e50;">🧾 レシートを保存</button>
-                <button id="share-receipt-btn" class="sub-btn" style="background-color: #1da1f2; box-shadow: 0 4px 0 #0d8ddb;">📢 記録を共有</button>
-            </div>
-            <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <button id="retry-btn">もう一度挑戦！</button>
-                <button id="home-btn" style="background-color: #95a5a6; box-shadow: 0 5px 0 #7f8c8d;">🏠 ホームに戻る</button>
-            </div>
-        </div>
     </div>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

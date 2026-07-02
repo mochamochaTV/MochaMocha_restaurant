@@ -49,9 +49,10 @@ export function unlockBGMOnFirstInteraction() {
     }
 }
 
+// ホーム画面の背景を変更（アップロード画像を assets/img/counter_bg.jpg として配置する前提）
 export const bgImages = {
     title: 'assets/img/bg.png',
-    home: 'assets/img/game_bg.png',
+    home: 'assets/img/counter_bg.jpg', // カウンターの背景画像に変更
     game: 'assets/img/game_bg.png',
     result: 'assets/img/game_bg.png',
     shop: 'assets/img/shop_bg.png',
